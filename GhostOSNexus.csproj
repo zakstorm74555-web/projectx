@@ -1,18 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWpf>true</UseWpf>
-    <AssemblyName>GhostOSNexus</AssemblyName>
-    <RootNamespace>GhostOSNexus</RootNamespace>
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>disable</Nullable>
-    <!-- Single Exe Bundling Settings -->
     <PublishSingleFile>true</PublishSingleFile>
     <SelfContained>true</SelfContained>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <ReadyToRun>true</ReadyToRun>
   </PropertyGroup>
-
 </Project>
