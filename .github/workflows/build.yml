@@ -1,0 +1,27 @@
+name: Ghost Native Compiler
+
+on:
+  push:
+    branches: [ main ]  # Jab bhi aap code push karenge, yeh chal padega
+
+jobs:
+  build:
+    runs-on: windows-latest  # GitHub ka Microsoft server use hoga
+
+    steps:
+    - name: Checkout repository code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET SDK Compiler
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Compile Code to Single Standalone EXE
+      run: dotnet publish GhostOSNexus.csproj -c Release
+
+    - name: Upload Finished EXE Product
+      uses: actions/upload-artifact@v3
+      with:
+        name: GhostOSNexus-Executable
+        path: bin/Release/net6.0/win-x64/publish/GhostOSNexus.exe
