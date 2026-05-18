@@ -1,0 +1,120 @@
+<Window x:Class="GhostOSNexus.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2000/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2000/xaml"
+        Title="GHOST-OS NEXUS // Core System Controller" Height="550" Width="850"
+        Background="#0A0A0C" WindowStartupLocation="CenterScreen" ResizeMode="CanMinus">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- LEFT SIDE: Cyberpunk Navigation Panel -->
+        <Border Grid.Column="0" Background="#0F0F12" BorderBrush="#00F0FF" BorderThickness="0,0,1,0">
+            <Grid>
+                <StackPanel Margin="15,25,15,15">
+                    <!-- App Logo / Header -->
+                    <TextBlock Text="GHOST-OS" Foreground="#00F0FF" FontFamily="Consolas" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"/>
+                    <TextBlock Text="N E X U S" Foreground="#00FF66" FontFamily="Consolas" FontSize="12" HorizontalAlignment="Center" Margin="0,2,0,30"/>
+                    
+                    <Separator Background="#22222B" Margin="0,0,0,20"/>
+
+                    <!-- Nav Buttons (Pure Monospace Minimalist) -->
+                    <Button Name="BtnKernel" Content="[01 // KERNEL_MATRIX]" Click="TabChange_Click" Background="Transparent" Foreground="#00F0FF" BorderBrush="Transparent" FontFamily="Consolas" FontSize="13" Padding="10" HorizontalContentAlignment="Left" Cursor="Hand"/>
+                    <Button Name="BtnDev" Content="[02 // DEV_SANDBOX]" Click="TabChange_Click" Background="Transparent" Foreground="#888899" BorderBrush="Transparent" FontFamily="Consolas" FontSize="13" Padding="10" HorizontalContentAlignment="Left" Margin="0,10,0,10" Cursor="Hand"/>
+                    <Button Name="BtnPhantom" Content="[03 // FILE_PHANTOM]" Click="TabChange_Click" Background="Transparent" Foreground="#888899" BorderBrush="Transparent" FontFamily="Consolas" FontSize="13" Padding="10" HorizontalContentAlignment="Left" Cursor="Hand"/>
+                </StackPanel>
+
+                <!-- Footer Status -->
+                <TextBlock Text="SYSTEM: SECURE_CORE_ONLINE" Foreground="#555566" FontFamily="Consolas" FontSize="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,15"/>
+            </Grid>
+        </Border>
+
+        <!-- RIGHT SIDE: Dynamic Matrix Content Window -->
+        <Grid Grid.Column="1" Margin="25">
+            
+            <!-- ====== TAB 1: KERNEL MATRIX (GAMING) ====== -->
+            <Grid Name="TabKernel" Visibility="Visible">
+                <StackPanel>
+                    <TextBlock Text="&gt; KERNEL MEMORY &amp; NETWORK MATRIX" Foreground="#00F0FF" FontFamily="Consolas" FontSize="16" FontWeight="Bold" Margin="0,0,0,25"/>
+                    
+                    <Border Background="#121216" BorderBrush="#22222B" BorderThickness="1" Padding="20" CornerRadius="4" Margin="0,0,0,20">
+                        <StackPanel>
+                            <TextBlock Text="RAM OPTIMIZATION ENGINE" Foreground="#FFFFFF" FontFamily="Consolas" FontSize="14" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBlock Text="Force flushes hidden cache and non-critical junk software background processes." Foreground="#888899" FontFamily="Consolas" FontSize="11" TextWrapping="Wrap" Margin="0,0,0,15"/>
+                            <Button Content="TRIGGER FORCE FLUSH RAM" Click="FlushRam_Click" Background="#00FF66" Foreground="#0A0A0C" FontWeight="Bold" FontFamily="Consolas" Padding="12" BorderThickness="0" Cursor="Hand"/>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Background="#121216" BorderBrush="#22222B" BorderThickness="1" Padding="20" CornerRadius="4">
+                        <StackPanel>
+                            <TextBlock Text="NETWORK THROTTLE BYPASS" Foreground="#FFFFFF" FontFamily="Consolas" FontSize="14" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBlock Text="Injects low-latency gaming priority packet index directly into Windows Registry table." Foreground="#888899" FontFamily="Consolas" FontSize="11" TextWrapping="Wrap" Margin="0,0,0,15"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0" Content="ENABLE ZERO-PING BYPASS" Click="NetworkEnable_Click" Background="#00F0FF" Foreground="#0A0A0C" FontWeight="Bold" FontFamily="Consolas" Padding="10" BorderThickness="0" Margin="0,0,10,0" Cursor="Hand"/>
+                                <Button Grid.Column="1" Content="RESTORE DEF SETTINGS" Click="NetworkDisable_Click" Background="Transparent" Foreground="#FF3333" BorderBrush="#FF3333" BorderThickness="1" FontWeight="Bold" FontFamily="Consolas" Padding="10" Cursor="Hand"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <!-- ====== TAB 2: DEV SANDBOX ====== -->
+            <Grid Name="TabDev" Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock Text="&gt; DEVELOPER COMPILER &amp; AUTOMATION SANDBOX" Foreground="#00F0FF" FontFamily="Consolas" FontSize="16" FontWeight="Bold" Margin="0,0,0,25"/>
+                    
+                    <Border Background="#121216" BorderBrush="#22222B" BorderThickness="1" Padding="20" CornerRadius="4">
+                        <StackPanel>
+                            <TextBlock Text="PORT ANNIHILATOR" Foreground="#FFFFFF" FontFamily="Consolas" FontSize="14" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBlock Text="Provide stuck local port number (e.g. 3000, 8080) to forcefully trace and kill the blocking PID process." Foreground="#888899" FontFamily="Consolas" FontSize="11" Margin="0,0,0,15"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="150"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Name="TxtPort" Background="#1A1A22" Foreground="#00FF66" BorderBrush="#22222B" FontFamily="Consolas" FontSize="14" Padding="8" VerticalContentAlignment="Center" Margin="0,0,10,0"/>
+                                <Button Grid.Column="1" Content="KILL PORT" Click="KillPort_Click" Background="#FF3333" Foreground="#FFFFFF" FontWeight="Bold" FontFamily="Consolas" Padding="8" BorderThickness="0" Cursor="Hand"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <!-- ====== TAB 3: FILE PHANTOM ====== -->
+            <Grid Name="TabPhantom" Visibility="Collapsed">
+                <StackPanel>
+                    <TextBlock Text="&gt; FILE PHANTOM CORE (LOW-LEVEL MFT OVERRIDE)" Foreground="#00F0FF" FontFamily="Consolas" FontSize="16" FontWeight="Bold" Margin="0,0,0,25"/>
+                    
+                    <Border Background="#121216" BorderBrush="#22222B" BorderThickness="1" Padding="20" CornerRadius="4" Margin="0,0,0,20">
+                        <StackPanel>
+                            <TextBlock Text="STUBBORN FILE KERNEL WIPER" Foreground="#FFFFFF" FontFamily="Consolas" FontSize="14" FontWeight="Bold" Margin="0,0,0,5"/>
+                            <TextBlock Text="Forcefully breaks absolute lock handles of stubborn locked files and completely vaporizes them." Foreground="#888899" FontFamily="Consolas" FontSize="11" Margin="0,0,0,15"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="150"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Name="TxtFilePath" Background="#1A1A22" Foreground="#00FF66" BorderBrush="#22222B" FontFamily="Consolas" FontSize="12" Padding="8" VerticalContentAlignment="Center" Margin="0,0,10,0"/>
+                                <Button Grid.Column="1" Content="ANNIHILATE FILE" Click="AnnihilateFile_Click" Background="#FF3333" Foreground="#FFFFFF" FontWeight="Bold" FontFamily="Consolas" Padding="8" BorderThickness="0" Cursor="Hand"/>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+
+            <!-- CONSOLE LIVE LOGGER OUTPUT (Shared at the bottom) -->
+            <Border VerticalAlignment="Bottom" Height="100" Background="#0A0A0C" BorderBrush="#22222B" BorderThickness="1" CornerRadius="4">
+                <ScrollViewer Name="ConsoleScroll">
+                    <TextBlock Name="TxtConsole" Text="[Console Init]: Ghost-OS Nexus system ready for matrix operations..." Foreground="#888899" FontFamily="Consolas" FontSize="11" Margin="10" TextWrapping="Wrap"/>
+                </ScrollViewer>
+            </Border>
+
+        </Grid>
+    </Grid>
+</Window>
