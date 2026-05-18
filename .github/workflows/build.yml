@@ -2,26 +2,32 @@ name: Ghost Native Compiler
 
 on:
   push:
-    branches: [ main ]  # Jab bhi aap code push karenge, yeh chal padega
+    branches: [ main ]
 
 jobs:
   build:
-    runs-on: windows-latest  # GitHub ka Microsoft server use hoga
+    runs-on: windows-latest  # Pure Windows Server context
 
     steps:
     - name: Checkout repository code
-      uses: actions/checkout@v4  # Updated to v4
+      uses: actions/checkout@v4
+
+    - name: Install Visual Studio Build Tools (WPF Support)
+      uses: microsoft/setup-msbuild@v2  # 🔥 Yeh line Microsoft ke saare custom UI frameworks aur Window tags ko active karegi
 
     - name: Setup .NET SDK Compiler
-      uses: actions/setup-dotnet@v4  # Updated to v4
+      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '6.0.x'
 
+    - name: Restore Project Dependencies
+      run: dotnet restore GhostOSNexus.csproj
+
     - name: Compile Code to Single Standalone EXE
-      run: dotnet publish GhostOSNexus.csproj -c Release
+      run: dotnet publish GhostOSNexus.csproj -c Release --runtime win-x64 /p:PublishSingleFile=true /p:SelfContained=true
 
     - name: Upload Finished EXE Product
-      uses: actions/upload-artifact@v4  # 🔥 Yahan v4 kar diya, ab error nahi aayega
+      uses: actions/upload-artifact@v4
       with:
         name: GhostOSNexus-Executable
-        path: bin/Release/net6.0/win-x64/publish/GhostOSNexus.exe
+        path: bin/Release/net6.0-windows/win-x64/publish/GhostOSNexus.exe
